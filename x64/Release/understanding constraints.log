@@ -1,0 +1,31 @@
+﻿  Collider.cpp
+  Manifold.cpp
+  Particle.cpp
+C:\Users\User\source\repos\understanding constraints\understanding constraints\CollisionFuncitons.h(13,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\CollisionFuncitons.h(61,38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\CollisionFuncitons.h(62,38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Particle.cpp(72,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Particle.cpp(73,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Particle.cpp(111,13): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Particle.cpp(205,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Particle.cpp(230,27): warning C4305: 'argument': truncation from 'double' to 'const T'
+          with
+          [
+              T=float
+          ]
+  ParticleManager.cpp
+C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(122,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(159,31): warning C4305: 'argument': truncation from 'double' to 'const T'
+          with
+          [
+              T=float
+          ]
+C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(245,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Shape.cpp
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Shape.cpp(22,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  understanding constraints.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1419 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  understanding constraints.vcxproj -> C:\Users\User\source\repos\understanding constraints\x64\Release\understanding constraints.exe
