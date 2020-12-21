@@ -156,6 +156,7 @@
     <ClInclude Include="Rotate.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="Utility Functions.h" />
     <ClInclude Include="vf3dMat44.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

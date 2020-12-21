@@ -114,3 +114,143 @@ bool SAT(Particle* A, Particle* B, Manifold& out)
 	
 	return true;
 }
+
+
+
+
+v2 supportEdge(v2 point, Collider* collider, float& dist, float& minPen)
+{
+	int nVerts_One = collider->points.size();
+
+	float minimum = -INFINITY;
+	float minPenetration = -INFINITY;
+
+	v2 best;
+
+	for (int j = 0; j < nVerts_One; j++)
+	{
+
+		v2 one_A = collider->points[j];
+		v2 one_B = collider->points[(j + 1) % nVerts_One];
+
+		v2 edge = one_B - one_A;
+
+		v2 normal = -edge.perp().norm();
+
+
+		v2 one_A_toPoint = point - one_A;
+
+		float proj = normal.dot(one_A_toPoint);
+
+		if (proj < 0)
+		{
+			if (proj > minPenetration)
+			{
+				minPenetration = proj;
+				best = normal;
+				
+			}
+		}
+		if (proj > minimum)
+		{
+			minimum = proj;
+			
+		}
+
+
+	}
+
+	minPen = minPenetration;
+	dist = minimum;
+	return best;
+
+}
+
+
+bool SAT2(Particle* A, Particle* B, Manifold& out)
+{
+	cout << "dist: "<< endl;
+	float minPenetration = -INFINITY;
+
+	v2 bestNorm;
+	v2 bestIncident;
+	Particle* bestOne = nullptr;
+
+	Collider* one = &A->collider;
+	Collider* two = &B->collider;
+
+
+	for (int i = 0; i < 2; i++)
+	{
+
+
+		if (i == 1)
+		{
+			one = &B->collider;
+			two = &A->collider;
+		}
+
+
+		int nVerts_One = one->points.size();
+
+
+
+		for (int j = 0; j < nVerts_One; j++)
+		{
+
+			v2 one_A = one->points[j];
+
+
+			float dist;
+			float minPen;
+
+			v2 returnedNorm = supportEdge(one_A, two, dist, minPen);
+
+			
+			if (dist < 0)
+			{
+				if (minPen > minPenetration)
+				{
+					minPenetration = minPen;
+					bestNorm = returnedNorm;
+					bestIncident = one_A;
+
+					if (i == 0)
+					{
+						bestOne = A;
+					}
+					else
+					{
+						bestOne = B;
+					}
+
+					out.one = (bestOne == B) ? A : B;
+					out.two = bestOne;
+					out.twoPoint = bestIncident;
+					out.onePoint = bestIncident - bestNorm * minPenetration;
+					out.normal = bestNorm;
+					out.depth = minPenetration;
+
+					
+				}	
+
+				return true;
+			}
+
+
+
+
+		}
+
+
+	}
+
+
+
+	
+
+	
+	return false;
+
+
+}

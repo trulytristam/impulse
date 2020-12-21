@@ -1,9 +1,7 @@
-﻿  ParticleManager.cpp
-C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(122,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(159,31): warning C4305: 'argument': truncation from 'double' to 'const T'
-          with
-          [
-              T=float
-          ]
-C:\Users\User\source\repos\understanding constraints\understanding constraints\ParticleManager.cpp(251,23): warning C4018: '<': signed/unsigned mismatch
+﻿  Shape.cpp
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Shape.cpp(29,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Shape.cpp(43,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\source\repos\understanding constraints\understanding constraints\Shape.cpp(64,21): warning C4018: '<': signed/unsigned mismatch
+  understanding constraints.cpp
+  Generating Code...
   understanding constraints.vcxproj -> C:\Users\User\source\repos\understanding constraints\Debug\understanding constraints.exe

@@ -17,6 +17,12 @@ struct Shape
 	int CountVerts();
 
 
+	float GetMass(float);
+
+
+	void AdjustCenterOfMass();
+
+
 };
 
 

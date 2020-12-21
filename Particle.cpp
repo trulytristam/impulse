@@ -18,8 +18,8 @@ void Particle::Integrate(float ft, v2 G)
 	if (!bStatic)
 	{	
 		a += (appliedForces + contraintForces);
-		v += a * ft;
 		p += v * ft;
+		v += a * ft;
 		
 		
 		
@@ -139,10 +139,10 @@ void Particle::Draw(olc::PixelGameEngine* scr)
 			v2 b = collider.points[(i+1) % collider.points.size()];
 
 
-			scr->FillTriangle(a, b, p);
+			//scr->FillTriangle(a, b, p);
 			
 
-			scr->DrawLine(a, b, olc::RED);
+			scr->DrawLine(a, b, olc::WHITE);
 			v2 vel = getPointVelocity(a);
 
 			//scr->DrawLine(a, a + vel, olc::CYAN);

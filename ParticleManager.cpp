@@ -33,6 +33,7 @@ void ParticleManager::Integrate(float ft)
 
 
 		v2 gravity = { 0,1200 };  //Gravity
+		//v2 gravity = { 0,0 };  //Gravity
 
 		p->AddForce(gravity);
 		//p->ConstrainToCircle({ 200,200 }, 50);
@@ -47,18 +48,54 @@ void ParticleManager::Update(float ft)
 {
 
 
-
+	Integrate(ft);
 
 	GenerateColliders();
 	GenerateManifolds();
 
 	ImpulseSolver(ft);
 
-	Integrate(ft);
+	
 
 
 	Clean();
 }
+void ParticleManager::Draw(olc::PixelGameEngine* scr)
+{
+
+
+	//scr->DrawCircle({ 200,200 }, 50);
+
+	for (auto& p : vecParticles) {
+
+
+		p->Draw(scr);
+
+		//cout << "Particle Drawn" << endl;
+
+	}
+
+
+	for (auto m : vecManifolds)
+	{
+
+
+		v2 point = m.onePoint;
+		v2 point2 = m.twoPoint;
+
+
+		scr->FillCircle(point.x, point.y, 3, olc::RED);
+		scr->FillCircle(point2.x, point2.y, 3, olc::BLUE);
+
+
+		scr->DrawLine(point, point + m.normal * 15, olc::BLUE);
+
+
+
+	}
+
+}
+
 
 void ParticleManager::SetSelected(v2 point)
 {
@@ -77,7 +114,7 @@ void ParticleManager::SetSelected(v2 point)
 
 void ParticleManager::ImpulseSolver(float ft)
 {
-	int N = 40;
+	int N = 10;
 	for (int i = 0; i < N; i++)
 	{
 		for (auto mani : vecManifolds)
@@ -119,20 +156,20 @@ void ParticleManager::ImpulseSolver(float ft)
 				float am = (a->iM + b->iM);
 
 				float B = mani.depth;
-				float top = ((0.7) * relativeVelProj) -0.008 / ft * B ;
-				float bot = am + (rat * a->iI + rbt * b->iI);
+				float top = ((1) * relativeVelProj) -0.04 / ft * B;
+				float bot = am;// +(rat * a->iI + rbt * b->iI);
 				float j = top / bot;
 
-				v2 J = n * (j - B);
+				v2 J = n * (j);
 
 				a->AddImpulse(col, J * -1);
 				b->AddImpulse(col, J);
 
 			}
 
-			if(i==N-1)
+			if(false)//i==N-1)
 			{
-				v2 t = relativeVel - relativeVel * relativeVel.dot(n);
+				v2 t = relativeVel + n * relativeVel.dot(n);
 				v2 tangent = t.norm();
 
 				float relativeVelProjTan = relativeVel.dot(tangent);
@@ -156,8 +193,8 @@ void ParticleManager::ImpulseSolver(float ft)
 
 					
 
-					v2 J = -tangent * j *0.08;
-					//cout << "JJ: "<< J.mag() << endl;
+					v2 J = -tangent * j *0.2;
+					
 
 					a->AddImpulse(col, J);
 					b->AddImpulse(col, J * -1);
@@ -181,41 +218,6 @@ void ParticleManager::ImpulseSolver(float ft)
 }
 
 
-void ParticleManager::Draw(olc::PixelGameEngine* scr)
-{
-
-
-	//scr->DrawCircle({ 200,200 }, 50);
-
-	for (auto& p : vecParticles) {
-
-		
-		p->Draw(scr);
-
-		//cout << "Particle Drawn" << endl;
-
-	}
-
-
-	for (auto m : vecManifolds)
-	{
-
-
-		v2 point = m.onePoint;
-		v2 point2 = m.twoPoint;
-
-
-		//scr->FillCircle(point.x, point.y, 3, olc::RED);
-		//scr->FillCircle(point2.x, point2.y, 3, olc::BLUE);
-
-
-		//scr->DrawLine(point, point + m.normal * 15, olc::BLUE);
-
-
-		
-	}
-
-}
 
 
 void ParticleManager::AddParticle(v2 p,float s, bool stat = false)
